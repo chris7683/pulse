@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ticketly — Tickets for events</title>
+    <meta
+      name="description"
+      content="UI-only demo ticket marketplace: browse events, pick tickets, and view a checkout-style summary."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">T</div>
+          <div class="brand-text">
+            <div class="brand-name">Ticketly</div>
+            <div class="brand-tag">Tickets, beautifully simple</div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="#events">Events</a>
+          <a class="nav-link" href="#how">How it works</a>
+          <a class="nav-link" href="#faq">FAQ</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn btn-ghost" type="button" data-action="open-cart" aria-haspopup="dialog">
+            <span class="btn-ico" aria-hidden="true">🧾</span>
+            <span>Checkout</span>
+            <span class="pill" id="cartCountPill" aria-label="items in checkout">0</span>
+          </button>
+          <button class="btn btn-primary" type="button" data-action="scroll-events">
+            Browse tickets
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="kicker">
+              <span class="dot" aria-hidden="true"></span>
+              <span>UI-only demo marketplace</span>
+            </div>
+            <h1>Find the best seats. Check out in seconds.</h1>
+            <p class="lead">
+              Browse trending events, compare ticket tiers, and preview a clean checkout flow — no
+              backend, no payments, just UI.
+            </p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" type="button" data-action="scroll-events">
+                Shop events
+              </button>
+              <button class="btn btn-ghost" type="button" data-action="open-promo">
+                View promo UI
+              </button>
+            </div>
+
+            <div class="hero-stats" role="list" aria-label="Highlights">
+              <div class="stat" role="listitem">
+                <div class="stat-num">4.9</div>
+                <div class="stat-label">avg rating</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="stat-num">120+</div>
+                <div class="stat-label">events curated</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="stat-num">Secure</div>
+                <div class="stat-label">UI preview</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Featured event preview">
+            <div class="hero-card-top">
+              <div class="badge">Featured</div>
+              <div class="chips">
+                <span class="chip">Instant delivery</span>
+                <span class="chip">Mobile ticket</span>
+              </div>
+            </div>
+            <div class="hero-card-title">Neon Nights Festival</div>
+            <div class="hero-card-sub">
+              <span>Sat • 8:00 PM</span>
+              <span class="sep" aria-hidden="true">•</span>
+              <span>Downtown Arena</span>
+            </div>
+            <div class="hero-price-row">
+              <div class="price">
+                <span class="price-from">from</span>
+                <span class="price-main">$49</span>
+                <span class="price-ea">/ea</span>
+              </div>
+              <button class="btn btn-primary" type="button" data-action="buy-featured">
+                Get tickets
+              </button>
+            </div>
+            <div class="hero-mini">
+              <div class="mini-row">
+                <span class="mini-k">Best value</span>
+                <span class="mini-v">Balcony • Row E–H</span>
+              </div>
+              <div class="mini-row">
+                <span class="mini-k">Fastest</span>
+                <span class="mini-v">Mobile delivery in minutes</span>
+              </div>
+            </div>
+            <div class="hero-card-foot">
+              <div class="trust">
+                <span class="trust-ico" aria-hidden="true">🔒</span>
+                <span>Checkout UI includes fees + totals</span>
+              </div>
+              <div class="trust">
+                <span class="trust-ico" aria-hidden="true">✅</span>
+                <span>Seat tier selection included</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-glow" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" id="events" aria-label="Events">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Popular events</h2>
+              <p class="muted">Search, filter, and preview ticket options.</p>
+            </div>
+            <div class="filters" role="group" aria-label="Search and filters">
+              <label class="field field-search">
+                <span class="sr-only">Search events</span>
+                <input
+                  id="searchInput"
+                  type="search"
+                  placeholder="Search events, venues, cities…"
+                  autocomplete="off"
+                />
+                <span class="field-ico" aria-hidden="true">⌘K</span>
+              </label>
+              <label class="field">
+                <span class="sr-only">Category</span>
+                <select id="categorySelect">
+                  <option value="all">All categories</option>
+                  <option value="music">Music</option>
+                  <option value="sports">Sports</option>
+                  <option value="theatre">Theatre</option>
+                  <option value="comedy">Comedy</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="sr-only">Sort</span>
+                <select id="sortSelect">
+                  <option value="trending">Sort: Trending</option>
+                  <option value="price_asc">Price: Low → High</option>
+                  <option value="price_desc">Price: High → Low</option>
+                  <option value="date_asc">Date: Soonest</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid" id="eventGrid" aria-live="polite"></div>
+
+          <div class="empty" id="emptyState" hidden>
+            <div class="empty-ico" aria-hidden="true">🔎</div>
+            <div class="empty-title">No matches</div>
+            <div class="empty-sub">Try a different search or category.</div>
+            <button class="btn btn-ghost" type="button" data-action="reset-filters">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="how" aria-label="How it works">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>How it works</h2>
+              <p class="muted">A clean purchase flow — designed for conversion.</p>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-ico" aria-hidden="true">🗓️</div>
+              <div class="step-title">Pick an event</div>
+              <div class="step-sub">Browse cards with date, venue, and starter prices.</div>
+            </div>
+            <div class="step">
+              <div class="step-ico" aria-hidden="true">🎟️</div>
+              <div class="step-title">Choose your tier</div>
+              <div class="step-sub">Select GA, Balcony, VIP — and quantity in one modal.</div>
+            </div>
+            <div class="step">
+              <div class="step-ico" aria-hidden="true">🧾</div>
+              <div class="step-title">Preview checkout</div>
+              <div class="step-sub">See fees, totals, and a polished “Place order” UI.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq" aria-label="Frequently asked questions">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>FAQ</h2>
+              <p class="muted">This project is UI-only (no backend).</p>
+            </div>
+          </div>
+          <div class="faq">
+            <details class="faq-item">
+              <summary>Is this a real ticketing site?</summary>
+              <div class="faq-body">
+                No — it’s a front-end UI demo. The buttons and checkout are visual only.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Does “Place order” charge my card?</summary>
+              <div class="faq-body">
+                No. It triggers a confirmation toast and clears the UI checkout state.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Can I add more events?</summary>
+              <div class="faq-body">
+                Yes — edit the sample data inside <code>app.js</code> (look for <code>EVENTS</code>).
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="foot-left">
+          <div class="brand brand-small">
+            <div class="brand-mark" aria-hidden="true">T</div>
+            <div class="brand-text">
+              <div class="brand-name">Ticketly</div>
+              <div class="brand-tag">UI-only</div>
+            </div>
+          </div>
+          <div class="foot-note">© <span id="year"></span> Ticketly. Built as a UI demo.</div>
+        </div>
+        <div class="foot-right">
+          <a class="foot-link" href="#events">Events</a>
+          <a class="foot-link" href="#how">How it works</a>
+          <a class="foot-link" href="#faq">FAQ</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Ticket Picker Modal -->
+    <dialog class="modal" id="ticketModal" aria-label="Ticket picker">
+      <form method="dialog" class="modal-card" id="ticketForm">
+        <div class="modal-head">
+          <div class="modal-title">
+            <div class="modal-eyebrow" id="modalEyebrow">Event</div>
+            <div class="modal-h1" id="modalEventTitle">Select tickets</div>
+            <div class="modal-sub" id="modalEventMeta">Date • Venue</div>
+          </div>
+          <button class="icon-btn" value="cancel" aria-label="Close">
+            <span aria-hidden="true">✕</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="ticket-grid" id="tierGrid" aria-label="Ticket tiers"></div>
+
+          <div class="modal-side">
+            <div class="side-card">
+              <div class="side-row">
+                <div class="side-k">Quantity</div>
+                <div class="qty" role="group" aria-label="Quantity selector">
+                  <button class="qty-btn" type="button" data-action="qty-down" aria-label="Decrease">
+                    −
+                  </button>
+                  <input
+                    id="qtyInput"
+                    class="qty-input"
+                    type="number"
+                    min="1"
+                    max="10"
+                    value="2"
+                    inputmode="numeric"
+                    aria-label="Ticket quantity"
+                  />
+                  <button class="qty-btn" type="button" data-action="qty-up" aria-label="Increase">
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="side-row">
+                <div class="side-k">Delivery</div>
+                <div class="segmented" role="group" aria-label="Delivery method">
+                  <label class="seg">
+                    <input type="radio" name="delivery" value="mobile" checked />
+                    <span>Mobile</span>
+                  </label>
+                  <label class="seg">
+                    <input type="radio" name="delivery" value="will_call" />
+                    <span>Will-call</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="total">
+                <div class="total-row">
+                  <span class="muted">Subtotal</span>
+                  <span id="modalSubtotal">$0.00</span>
+                </div>
+                <div class="total-row">
+                  <span class="muted">Service fee</span>
+                  <span id="modalFee">$0.00</span>
+                </div>
+                <div class="total-row total-strong">
+                  <span>Total</span>
+                  <span id="modalTotal">$0.00</span>
+                </div>
+                <div class="micro muted" id="modalFeeHint">Fees are a UI preview.</div>
+              </div>
+            </div>
+
+            <div class="modal-actions">
+              <button class="btn btn-ghost" value="cancel" type="submit">Keep browsing</button>
+              <button class="btn btn-primary" type="button" data-action="add-to-checkout">
+                Add to checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Checkout Modal -->
+    <dialog class="modal" id="checkoutModal" aria-label="Checkout preview">
+      <form method="dialog" class="modal-card modal-card-wide" id="checkoutForm">
+        <div class="modal-head">
+          <div class="modal-title">
+            <div class="modal-eyebrow">Checkout</div>
+            <div class="modal-h1">Review & place order</div>
+            <div class="modal-sub">UI-only preview — no payment processing.</div>
+          </div>
+          <button class="icon-btn" value="cancel" aria-label="Close">
+            <span aria-hidden="true">✕</span>
+          </button>
+        </div>
+
+        <div class="checkout">
+          <div class="checkout-left">
+            <div class="panel">
+              <div class="panel-title">Order summary</div>
+              <div class="cart" id="cartList" aria-label="Checkout items"></div>
+              <div class="cart-empty" id="cartEmpty" hidden>
+                <div class="empty-ico" aria-hidden="true">🧺</div>
+                <div class="empty-title">Your checkout is empty</div>
+                <div class="empty-sub">Add a ticket to see the checkout UI.</div>
+                <button class="btn btn-primary" type="button" data-action="scroll-events">
+                  Browse events
+                </button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-title">Contact (visual only)</div>
+              <div class="form-grid">
+                <label class="field">
+                  <span class="field-label">Email</span>
+                  <input type="email" placeholder="you@example.com" />
+                </label>
+                <label class="field">
+                  <span class="field-label">Phone</span>
+                  <input type="tel" placeholder="(555) 555‑5555" />
+                </label>
+              </div>
+              <div class="micro muted">
+                This form is not submitted anywhere — it’s here to demonstrate checkout layout.
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-right">
+            <div class="panel">
+              <div class="panel-title">Totals</div>
+              <div class="totals">
+                <div class="total-row">
+                  <span class="muted">Items</span>
+                  <span id="checkoutItems">$0.00</span>
+                </div>
+                <div class="total-row">
+                  <span class="muted">Fees</span>
+                  <span id="checkoutFees">$0.00</span>
+                </div>
+                <div class="divider"></div>
+                <div class="total-row total-strong">
+                  <span>Total</span>
+                  <span id="checkoutTotal">$0.00</span>
+                </div>
+              </div>
+              <div class="panel-actions">
+                <button class="btn btn-primary btn-full" type="button" data-action="place-order">
+                  Place order (UI)
+                </button>
+                <button class="btn btn-ghost btn-full" type="button" data-action="clear-checkout">
+                  Clear checkout
+                </button>
+              </div>
+              <div class="micro muted">
+                By placing this order, nothing happens besides a confirmation toast.
+              </div>
+            </div>
+
+            <div class="panel panel-soft">
+              <div class="panel-title">Promo code</div>
+              <div class="promo">
+                <input id="promoInput" type="text" placeholder="TRY: NEON10" />
+                <button class="btn btn-ghost" type="button" data-action="apply-promo">Apply</button>
+              </div>
+              <div class="micro muted" id="promoHint">
+                UI-only: discounts are simulated for demo purposes.
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <div class="toast-inner">
+        <div class="toast-ico" id="toastIco" aria-hidden="true">✅</div>
+        <div class="toast-msg" id="toastMsg">Saved</div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+
