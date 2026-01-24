@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ticketly — Tickets for events</title>
+    <title>Pulse — Prom Booking System</title>
     <meta
       name="description"
-      content="UI-only demo ticket marketplace: browse events, pick tickets, and view a checkout-style summary."
+      content="Book your prom tickets with Pulse. Choose from EBIS Prom, AIS, CES, and NIS. Select Lounge, VIP, or Standing tickets."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -16,15 +16,15 @@
     <header class="site-header">
       <div class="container header-inner">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">T</div>
+          <div class="brand-mark" aria-hidden="true">P</div>
           <div class="brand-text">
-            <div class="brand-name">Ticketly</div>
-            <div class="brand-tag">Tickets, beautifully simple</div>
+            <div class="brand-name">Pulse</div>
+            <div class="brand-tag">Prom booking made easy</div>
           </div>
         </div>
 
         <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="#events">Events</a>
+          <a class="nav-link" href="#events">Proms</a>
           <a class="nav-link" href="#how">How it works</a>
           <a class="nav-link" href="#faq">FAQ</a>
         </nav>
@@ -48,34 +48,33 @@
           <div class="hero-copy">
             <div class="kicker">
               <span class="dot" aria-hidden="true"></span>
-              <span>UI-only demo marketplace</span>
+              <span>Pulse Prom Booking</span>
             </div>
-            <h1>Find the best seats. Check out in seconds.</h1>
+            <h1>Book your perfect prom experience.</h1>
             <p class="lead">
-              Browse trending events, compare ticket tiers, and preview a clean checkout flow — no
-              backend, no payments, just UI.
+              Choose from four amazing proms: EBIS Prom, AIS, CES, and NIS. Select Lounge, VIP, or Standing tickets — all at different price points.
             </p>
             <div class="hero-cta">
               <button class="btn btn-primary" type="button" data-action="scroll-events">
-                Shop events
+                Browse proms
               </button>
               <button class="btn btn-ghost" type="button" data-action="open-promo">
-                View promo UI
+                View promo code
               </button>
             </div>
 
             <div class="hero-stats" role="list" aria-label="Highlights">
               <div class="stat" role="listitem">
-                <div class="stat-num">4.9</div>
-                <div class="stat-label">avg rating</div>
+                <div class="stat-num">4</div>
+                <div class="stat-label">proms available</div>
               </div>
               <div class="stat" role="listitem">
-                <div class="stat-num">120+</div>
-                <div class="stat-label">events curated</div>
+                <div class="stat-num">3</div>
+                <div class="stat-label">ticket types</div>
               </div>
               <div class="stat" role="listitem">
                 <div class="stat-num">Secure</div>
-                <div class="stat-label">UI preview</div>
+                <div class="stat-label">booking system</div>
               </div>
             </div>
           </div>
@@ -88,40 +87,40 @@
                 <span class="chip">Mobile ticket</span>
               </div>
             </div>
-            <div class="hero-card-title">Neon Nights Festival</div>
+            <div class="hero-card-title">EBIS Prom</div>
             <div class="hero-card-sub">
-              <span>Sat • 8:00 PM</span>
+              <span>Sat • 7:00 PM</span>
               <span class="sep" aria-hidden="true">•</span>
-              <span>Downtown Arena</span>
+              <span>Grand Ballroom</span>
             </div>
             <div class="hero-price-row">
               <div class="price">
                 <span class="price-from">from</span>
-                <span class="price-main">$49</span>
+                <span class="price-main">$75</span>
                 <span class="price-ea">/ea</span>
               </div>
               <button class="btn btn-primary" type="button" data-action="buy-featured">
-                Get tickets
+                Book tickets
               </button>
             </div>
             <div class="hero-mini">
               <div class="mini-row">
                 <span class="mini-k">Best value</span>
-                <span class="mini-v">Balcony • Row E–H</span>
+                <span class="mini-v">Standing tickets</span>
               </div>
               <div class="mini-row">
-                <span class="mini-k">Fastest</span>
-                <span class="mini-v">Mobile delivery in minutes</span>
+                <span class="mini-k">Premium</span>
+                <span class="mini-v">VIP & Lounge available</span>
               </div>
             </div>
             <div class="hero-card-foot">
               <div class="trust">
                 <span class="trust-ico" aria-hidden="true">🔒</span>
-                <span>Checkout UI includes fees + totals</span>
+                <span>Secure booking system</span>
               </div>
               <div class="trust">
                 <span class="trust-ico" aria-hidden="true">✅</span>
-                <span>Seat tier selection included</span>
+                <span>Choose Lounge, VIP, or Standing</span>
               </div>
             </div>
           </div>
@@ -133,34 +132,24 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <h2>Popular events</h2>
-              <p class="muted">Search, filter, and preview ticket options.</p>
+              <h2>Available Proms</h2>
+              <p class="muted">Choose your prom and select Lounge, VIP, or Standing tickets.</p>
             </div>
             <div class="filters" role="group" aria-label="Search and filters">
               <label class="field field-search">
-                <span class="sr-only">Search events</span>
+                <span class="sr-only">Search proms</span>
                 <input
                   id="searchInput"
                   type="search"
-                  placeholder="Search events, venues, cities…"
+                  placeholder="Search proms…"
                   autocomplete="off"
                 />
                 <span class="field-ico" aria-hidden="true">⌘K</span>
               </label>
               <label class="field">
-                <span class="sr-only">Category</span>
-                <select id="categorySelect">
-                  <option value="all">All categories</option>
-                  <option value="music">Music</option>
-                  <option value="sports">Sports</option>
-                  <option value="theatre">Theatre</option>
-                  <option value="comedy">Comedy</option>
-                </select>
-              </label>
-              <label class="field">
                 <span class="sr-only">Sort</span>
                 <select id="sortSelect">
-                  <option value="trending">Sort: Trending</option>
+                  <option value="trending">Sort: Popular</option>
                   <option value="price_asc">Price: Low → High</option>
                   <option value="price_desc">Price: High → Low</option>
                   <option value="date_asc">Date: Soonest</option>
@@ -185,24 +174,24 @@
           <div class="section-head">
             <div>
               <h2>How it works</h2>
-              <p class="muted">A clean purchase flow — designed for conversion.</p>
+              <p class="muted">Simple booking process for your perfect prom night.</p>
             </div>
           </div>
           <div class="steps">
             <div class="step">
-              <div class="step-ico" aria-hidden="true">🗓️</div>
-              <div class="step-title">Pick an event</div>
-              <div class="step-sub">Browse cards with date, venue, and starter prices.</div>
+              <div class="step-ico" aria-hidden="true">🎓</div>
+              <div class="step-title">Choose your prom</div>
+              <div class="step-sub">Select from EBIS Prom, AIS, CES, or NIS.</div>
             </div>
             <div class="step">
               <div class="step-ico" aria-hidden="true">🎟️</div>
-              <div class="step-title">Choose your tier</div>
-              <div class="step-sub">Select GA, Balcony, VIP — and quantity in one modal.</div>
+              <div class="step-title">Pick ticket type</div>
+              <div class="step-sub">Choose Lounge, VIP, or Standing — each with different prices.</div>
             </div>
             <div class="step">
-              <div class="step-ico" aria-hidden="true">🧾</div>
-              <div class="step-title">Preview checkout</div>
-              <div class="step-sub">See fees, totals, and a polished “Place order” UI.</div>
+              <div class="step-ico" aria-hidden="true">✨</div>
+              <div class="step-title">Complete booking</div>
+              <div class="step-sub">Review your order and confirm your prom tickets.</div>
             </div>
           </div>
         </div>
@@ -213,26 +202,26 @@
           <div class="section-head">
             <div>
               <h2>FAQ</h2>
-              <p class="muted">This project is UI-only (no backend).</p>
+              <p class="muted">Common questions about Pulse prom booking.</p>
             </div>
           </div>
           <div class="faq">
             <details class="faq-item">
-              <summary>Is this a real ticketing site?</summary>
+              <summary>What ticket types are available?</summary>
               <div class="faq-body">
-                No — it’s a front-end UI demo. The buttons and checkout are visual only.
+                Each prom offers three ticket types: Lounge (premium seating), VIP (exclusive access), and Standing (general admission). Prices vary by prom and ticket type.
               </div>
             </details>
             <details class="faq-item">
-              <summary>Does “Place order” charge my card?</summary>
+              <summary>Which proms can I book?</summary>
               <div class="faq-body">
-                No. It triggers a confirmation toast and clears the UI checkout state.
+                Pulse offers booking for four proms: EBIS Prom, AIS, CES, and NIS. Each prom has its own date, venue, and pricing.
               </div>
             </details>
             <details class="faq-item">
-              <summary>Can I add more events?</summary>
+              <summary>Can I change my ticket type after booking?</summary>
               <div class="faq-body">
-                Yes — edit the sample data inside <code>app.js</code> (look for <code>EVENTS</code>).
+                Please contact Pulse support for any changes to your booking. Availability depends on remaining tickets.
               </div>
             </details>
           </div>
@@ -244,16 +233,16 @@
       <div class="container footer-inner">
         <div class="foot-left">
           <div class="brand brand-small">
-            <div class="brand-mark" aria-hidden="true">T</div>
+            <div class="brand-mark" aria-hidden="true">P</div>
             <div class="brand-text">
-              <div class="brand-name">Ticketly</div>
-              <div class="brand-tag">UI-only</div>
+              <div class="brand-name">Pulse</div>
+              <div class="brand-tag">Prom booking</div>
             </div>
           </div>
-          <div class="foot-note">© <span id="year"></span> Ticketly. Built as a UI demo.</div>
+          <div class="foot-note">© <span id="year"></span> Pulse. Prom booking system.</div>
         </div>
         <div class="foot-right">
-          <a class="foot-link" href="#events">Events</a>
+          <a class="foot-link" href="#events">Proms</a>
           <a class="foot-link" href="#how">How it works</a>
           <a class="foot-link" href="#faq">FAQ</a>
         </div>
@@ -265,7 +254,7 @@
       <form method="dialog" class="modal-card" id="ticketForm">
         <div class="modal-head">
           <div class="modal-title">
-            <div class="modal-eyebrow" id="modalEyebrow">Event</div>
+            <div class="modal-eyebrow" id="modalEyebrow">Prom</div>
             <div class="modal-h1" id="modalEventTitle">Select tickets</div>
             <div class="modal-sub" id="modalEventMeta">Date • Venue</div>
           </div>
@@ -349,10 +338,10 @@
     <dialog class="modal" id="checkoutModal" aria-label="Checkout preview">
       <form method="dialog" class="modal-card modal-card-wide" id="checkoutForm">
         <div class="modal-head">
-          <div class="modal-title">
+            <div class="modal-title">
             <div class="modal-eyebrow">Checkout</div>
-            <div class="modal-h1">Review & place order</div>
-            <div class="modal-sub">UI-only preview — no payment processing.</div>
+            <div class="modal-h1">Review & confirm booking</div>
+            <div class="modal-sub">Review your prom ticket selection and complete your booking.</div>
           </div>
           <button class="icon-btn" value="cancel" aria-label="Close">
             <span aria-hidden="true">✕</span>
@@ -375,7 +364,7 @@
             </div>
 
             <div class="panel">
-              <div class="panel-title">Contact (visual only)</div>
+              <div class="panel-title">Contact information</div>
               <div class="form-grid">
                 <label class="field">
                   <span class="field-label">Email</span>
@@ -387,7 +376,7 @@
                 </label>
               </div>
               <div class="micro muted">
-                This form is not submitted anywhere — it’s here to demonstrate checkout layout.
+                We'll send your ticket confirmation to this email address.
               </div>
             </div>
           </div>
@@ -412,14 +401,14 @@
               </div>
               <div class="panel-actions">
                 <button class="btn btn-primary btn-full" type="button" data-action="place-order">
-                  Place order (UI)
+                  Confirm booking
                 </button>
                 <button class="btn btn-ghost btn-full" type="button" data-action="clear-checkout">
-                  Clear checkout
+                  Clear cart
                 </button>
               </div>
               <div class="micro muted">
-                By placing this order, nothing happens besides a confirmation toast.
+                Review your selection before confirming your prom booking.
               </div>
             </div>
 
@@ -430,7 +419,7 @@
                 <button class="btn btn-ghost" type="button" data-action="apply-promo">Apply</button>
               </div>
               <div class="micro muted" id="promoHint">
-                UI-only: discounts are simulated for demo purposes.
+                Enter a promo code to apply a discount to your booking.
               </div>
             </div>
           </div>
@@ -449,5 +438,6 @@
     <script src="./app.js"></script>
   </body>
 </html>
+
 
 

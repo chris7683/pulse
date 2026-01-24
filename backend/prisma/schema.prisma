@@ -1,0 +1,124 @@
+// Pulse Prom Booking Database Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Prom {
+  id          String      @id @default(uuid())
+  name        String      // EBIS Prom, AIS, CES, NIS
+  date        DateTime
+  venue       String
+  city        String
+  description String?
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  ticketTypes TicketType[]
+  orders      Order[]
+  
+  @@index([isActive, date])
+}
+
+model TicketType {
+  id          String   @id @default(uuid())
+  promId      String
+  name        String   // Lounge, VIP, Standing
+  price       Float
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  prom        Prom         @relation(fields: [promId], references: [id], onDelete: Cascade)
+  orderItems  OrderItem[]
+  
+  @@unique([promId, name])
+  @@index([promId, isActive])
+}
+
+model Order {
+  id              String        @id @default(uuid())
+  promId          String
+  referenceCode   String        @unique // Unique bank transfer reference
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  status          String        @default("PENDING_VERIFICATION")
+  totalAmount     Float
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  prom            Prom          @relation(fields: [promId], references: [id])
+  items           OrderItem[]
+  paymentProof    PaymentProof?
+  tickets         Ticket[]
+  
+  @@index([status, createdAt])
+  @@index([referenceCode])
+  @@index([customerEmail])
+}
+
+
+model OrderItem {
+  id           String   @id @default(uuid())
+  orderId      String
+  ticketTypeId String
+  quantity     Int
+  unitPrice    Float
+  subtotal     Float
+  createdAt    DateTime @default(now())
+  
+  order        Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  ticketType   TicketType @relation(fields: [ticketTypeId], references: [id])
+  
+  @@index([orderId])
+}
+
+model PaymentProof {
+  id              String   @id @default(uuid())
+  orderId         String   @unique
+  fileName        String   // Actual saved filename (multer generated)
+  originalFileName String? // Original filename from user
+  filePath        String
+  fileSize        Int
+  mimeType        String
+  uploadedAt      DateTime @default(now())
+  
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  @@index([orderId])
+}
+
+model Ticket {
+  id          String   @id @default(uuid())
+  orderId     String
+  qrCode      String   @unique // Unique QR code data
+  ticketType  String   // Name of ticket type
+  createdAt   DateTime @default(now())
+  
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  @@index([orderId])
+  @@index([qrCode])
+}
+
+model AdminUser {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  passwordHash String
+  name        String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastLogin   DateTime?
+  
+  @@index([email, isActive])
+}
+

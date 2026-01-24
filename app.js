@@ -1,112 +1,72 @@
-/* UI-only ticket marketplace demo (no backend) */
+/* Pulse Prom Booking System */
 
 const EVENTS = [
   {
-    id: "neon-nights",
-    title: "Neon Nights Festival",
-    category: "music",
-    dateLabel: "Sat • 8:00 PM",
-    dateISO: "2026-02-07T20:00:00",
-    venue: "Downtown Arena",
-    city: "San Francisco, CA",
+    id: "ebis-prom",
+    title: "EBIS Prom",
+    category: "prom",
+    dateLabel: "Sat • 7:00 PM",
+    dateISO: "2026-05-14T19:00:00",
+    venue: "Grand Ballroom",
+    city: "Downtown",
     trendingScore: 98,
-    baseFrom: 49,
-    tags: ["Featured", "Instant delivery"],
+    baseFrom: 75,
+    tags: ["Featured", "Popular"],
     tiers: [
-      { key: "ga", name: "General Admission", desc: "Main floor access • Great energy.", price: 49, inventory: "Limited" },
-      { key: "balcony", name: "Balcony", desc: "Elevated view • Best value rows E–H.", price: 69, inventory: "Good" },
-      { key: "floor", name: "Floor+", desc: "Closer to stage • Early entry lane.", price: 99, inventory: "Low" },
-      { key: "vip", name: "VIP", desc: "Lounge access • Fast entry + merch.", price: 149, inventory: "Very low" }
+      { key: "standing", name: "Standing", desc: "General admission • Dance floor access.", price: 75, inventory: "Good" },
+      { key: "vip", name: "VIP", desc: "VIP section • Premium experience.", price: 120, inventory: "Limited" },
+      { key: "lounge", name: "Lounge", desc: "Lounge access • Best seats in house.", price: 150, inventory: "Low" }
     ]
   },
   {
-    id: "city-derby",
-    title: "City Derby: United vs. Rangers",
-    category: "sports",
-    dateLabel: "Sun • 3:30 PM",
-    dateISO: "2026-02-15T15:30:00",
-    venue: "Harbor Stadium",
-    city: "Seattle, WA",
+    id: "ais",
+    title: "AIS",
+    category: "prom",
+    dateLabel: "Fri • 8:00 PM",
+    dateISO: "2026-05-20T20:00:00",
+    venue: "Crystal Hall",
+    city: "City Center",
     trendingScore: 92,
-    baseFrom: 39,
-    tags: ["Mobile ticket"],
+    baseFrom: 65,
+    tags: ["Popular"],
     tiers: [
-      { key: "upper", name: "Upper Bowl", desc: "Budget-friendly • Clear view.", price: 39, inventory: "Good" },
-      { key: "lower", name: "Lower Bowl", desc: "Closer action • Great atmosphere.", price: 79, inventory: "Limited" },
-      { key: "club", name: "Club Seats", desc: "Premium sections • Club access.", price: 129, inventory: "Low" },
-      { key: "sideline", name: "Sideline+", desc: "Near midfield • Best vantage.", price: 179, inventory: "Very low" }
+      { key: "standing", name: "Standing", desc: "General admission • Full venue access.", price: 65, inventory: "Good" },
+      { key: "vip", name: "VIP", desc: "VIP area • Exclusive access.", price: 110, inventory: "Limited" },
+      { key: "lounge", name: "Lounge", desc: "Lounge seating • Premium comfort.", price: 140, inventory: "Low" }
     ]
   },
   {
-    id: "late-night-laughs",
-    title: "Late Night Laughs (Stand-up)",
-    category: "comedy",
-    dateLabel: "Fri • 9:00 PM",
-    dateISO: "2026-02-06T21:00:00",
-    venue: "The Brickhouse",
-    city: "Austin, TX",
+    id: "ces",
+    title: "CES",
+    category: "prom",
+    dateLabel: "Sat • 7:30 PM",
+    dateISO: "2026-05-28T19:30:00",
+    venue: "Elegance Center",
+    city: "Uptown",
+    trendingScore: 88,
+    baseFrom: 70,
+    tags: ["Elegant"],
+    tiers: [
+      { key: "standing", name: "Standing", desc: "General admission • Main floor.", price: 70, inventory: "Good" },
+      { key: "vip", name: "VIP", desc: "VIP section • Special treatment.", price: 115, inventory: "Limited" },
+      { key: "lounge", name: "Lounge", desc: "Lounge area • Premium experience.", price: 145, inventory: "Low" }
+    ]
+  },
+  {
+    id: "nis",
+    title: "NIS",
+    category: "prom",
+    dateLabel: "Fri • 8:30 PM",
+    dateISO: "2026-06-04T20:30:00",
+    venue: "Majestic Venue",
+    city: "Riverside",
     trendingScore: 85,
-    baseFrom: 24,
-    tags: ["Instant delivery"],
+    baseFrom: 80,
+    tags: ["Exclusive"],
     tiers: [
-      { key: "ga", name: "General Seating", desc: "First come • Fun, cozy room.", price: 24, inventory: "Good" },
-      { key: "front", name: "Front Rows", desc: "Closer to the action • Expect crowd work.", price: 42, inventory: "Limited" },
-      { key: "table", name: "Table", desc: "Reserved table seating • Best comfort.", price: 58, inventory: "Low" },
-      { key: "premium", name: "Premium", desc: "Premium table • Dedicated server lane.", price: 74, inventory: "Very low" }
-    ]
-  },
-  {
-    id: "phantom-street",
-    title: "Phantom Street — Broadway Tour",
-    category: "theatre",
-    dateLabel: "Wed • 7:30 PM",
-    dateISO: "2026-03-04T19:30:00",
-    venue: "Grand Theatre",
-    city: "Chicago, IL",
-    trendingScore: 90,
-    baseFrom: 59,
-    tags: ["Best seller"],
-    tiers: [
-      { key: "mezz", name: "Mezzanine", desc: "Balanced view • Great acoustics.", price: 59, inventory: "Good" },
-      { key: "orch", name: "Orchestra", desc: "Closer performance • Premium view.", price: 99, inventory: "Limited" },
-      { key: "box", name: "Box Seats", desc: "Side boxes • Unique angle.", price: 119, inventory: "Low" },
-      { key: "prem", name: "Premier", desc: "Center orchestra • Top tier.", price: 159, inventory: "Very low" }
-    ]
-  },
-  {
-    id: "midnight-synth",
-    title: "Midnight Synth Live",
-    category: "music",
-    dateLabel: "Thu • 8:30 PM",
-    dateISO: "2026-02-19T20:30:00",
-    venue: "Pulse Hall",
-    city: "Los Angeles, CA",
-    trendingScore: 83,
-    baseFrom: 34,
-    tags: ["Mobile ticket"],
-    tiers: [
-      { key: "ga", name: "General Admission", desc: "Standing room • Big sound.", price: 34, inventory: "Good" },
-      { key: "balcony", name: "Balcony", desc: "Seated view • Chill vibe.", price: 48, inventory: "Good" },
-      { key: "pit", name: "Pit", desc: "Front pit • High energy.", price: 79, inventory: "Limited" },
-      { key: "vip", name: "VIP", desc: "Meet & greet • Signed poster.", price: 139, inventory: "Low" }
-    ]
-  },
-  {
-    id: "hoops-night",
-    title: "Hoops Night: Kings vs. Waves",
-    category: "sports",
-    dateLabel: "Mon • 7:00 PM",
-    dateISO: "2026-02-23T19:00:00",
-    venue: "Metro Center",
-    city: "New York, NY",
-    trendingScore: 79,
-    baseFrom: 29,
-    tags: ["Family friendly"],
-    tiers: [
-      { key: "upper", name: "Upper Bowl", desc: "Great value • Quick entry lanes.", price: 29, inventory: "Good" },
-      { key: "lower", name: "Lower Bowl", desc: "Closer play • Great energy.", price: 69, inventory: "Limited" },
-      { key: "club", name: "Club", desc: "Premium seating • Lounge access.", price: 119, inventory: "Low" },
-      { key: "courtside", name: "Courtside", desc: "Closest seats • VIP entrance.", price: 249, inventory: "Very low" }
+      { key: "standing", name: "Standing", desc: "General admission • Full access.", price: 80, inventory: "Good" },
+      { key: "vip", name: "VIP", desc: "VIP access • Exclusive perks.", price: 125, inventory: "Limited" },
+      { key: "lounge", name: "Lounge", desc: "Lounge tickets • Best experience.", price: 160, inventory: "Low" }
     ]
   }
 ];
@@ -172,9 +132,8 @@ function renderEvents() {
   const q = state.query.trim().toLowerCase();
   let list = EVENTS.slice();
 
-  if (state.category !== "all") {
-    list = list.filter((e) => e.category === state.category);
-  }
+  // All events are proms, so category filter is not needed
+  // Keeping the filter structure for potential future use
   if (q) {
     list = list.filter((e) => {
       const hay = `${e.title} ${e.venue} ${e.city} ${e.category}`.toLowerCase();
@@ -238,8 +197,8 @@ function renderEvents() {
 }
 
 function labelCategory(cat) {
-  const map = { music: "Music", sports: "Sports", theatre: "Theatre", comedy: "Comedy" };
-  return map[cat] || "Event";
+  const map = { prom: "Prom" };
+  return map[cat] || "Prom";
 }
 
 function escapeHtml(s) {
@@ -365,7 +324,7 @@ function renderCheckout() {
     $("#checkoutItems").textContent = formatMoney(0);
     $("#checkoutFees").textContent = formatMoney(0);
     $("#checkoutTotal").textContent = formatMoney(0);
-    $("#promoHint").textContent = "UI-only: discounts are simulated for demo purposes.";
+      $("#promoHint").textContent = "Enter a promo code to apply a discount to your booking.";
     return;
   }
 
@@ -408,7 +367,7 @@ function renderCheckout() {
   } else if (state.promo) {
     $("#promoHint").textContent = `Promo applied: ${state.promo.code}.`;
   } else {
-    $("#promoHint").textContent = "UI-only: discounts are simulated for demo purposes.";
+      $("#promoHint").textContent = "Enter a promo code to apply a discount to your booking.";
   }
 }
 
@@ -446,11 +405,11 @@ function applyPromo(codeRaw) {
     return;
   }
 
-  // UI-only: a couple demo codes
+  // Promo codes for Pulse
   const promos = {
-    NEON10: 10,
+    PULSE10: 10,
     VIP15: 15,
-    SAVE5: 5
+    PROM5: 5
   };
   const percent = promos[code];
   if (!percent) {
@@ -502,17 +461,15 @@ function bindGlobalActions() {
     }
     if (action === "reset-filters") {
       state.query = "";
-      state.category = "all";
       state.sort = "trending";
       $("#searchInput").value = "";
-      $("#categorySelect").value = "all";
       $("#sortSelect").value = "trending";
       renderEvents();
       showToast("Filters reset", "🧹");
       return;
     }
     if (action === "buy-featured") {
-      openTicketModal("neon-nights", "balcony");
+      openTicketModal("ebis-prom", "standing");
       return;
     }
     if (action === "buy" || action === "quick-view") {
@@ -554,15 +511,15 @@ function bindGlobalActions() {
         showToast("Add a ticket first", "🧺");
         return;
       }
-      showToast("Order placed (UI only)", "🎉");
+      showToast("Booking confirmed!", "🎉");
       clearCheckout();
       return;
     }
     if (action === "open-promo") {
-      $("#promoInput").value = "NEON10";
+      $("#promoInput").value = "PULSE10";
       renderCheckout();
       $("#checkoutModal").showModal();
-      showToast("Try promo: NEON10", "🏷️");
+      showToast("Try promo: PULSE10", "🏷️");
       return;
     }
 
@@ -582,10 +539,6 @@ function bindGlobalActions() {
     state.query = e.target.value || "";
     renderEvents();
   });
-  $("#categorySelect").addEventListener("change", (e) => {
-    state.category = e.target.value || "all";
-    renderEvents();
-  });
   $("#sortSelect").addEventListener("change", (e) => {
     state.sort = e.target.value || "trending";
     renderEvents();
@@ -602,5 +555,6 @@ function init() {
 }
 
 init();
+
 
 
